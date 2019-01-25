@@ -13,7 +13,12 @@
         <span class="border"></span>
     </label>
     <script>
-        
+        elm.id("inp").addEventListener("keypress", enterRoom, false);
+        function enterRoom(e) {
+            if(e.keyCode==13&&elm.id("inp").value!="") {
+                location.href = "room?code=" + elm.id("inp").value;
+            }
+        }
     </script>
 </body>
 </html>
