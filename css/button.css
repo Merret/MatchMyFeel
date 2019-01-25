@@ -1,155 +1,74 @@
-* {
-  box-sizing: border-box;
-}
-
-div {
-  display: block;
-  height: 100%;
-  -webkit-animation: hue-rotate 10s linear infinite;
-          animation: hue-rotate 10s linear infinite;
-}
-
-.button {
-  -webkit-font-smoothing: antialiased;
-  background-color: #222;
-  border: none;
-  color: #fff;
-  display: inline-block;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  font-weight: 100;
+a {
   text-decoration: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  letter-spacing: 1px;
-  color: white;
-  padding: 20px 40px;
-  text-transform: uppercase;
-  -webkit-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  line-height: 80px;
+  color: black;
 }
-.button:hover {
-  background-color: #90feb5;
-  color: #fff;
+@media (min-width: 600px) {
+  .wrap {
+    width: 50%;
+    float: left;
+  }
 }
-.button:active {
-  -webkit-transform: scale(0.95);
-          transform: scale(0.95);
-}
-.button--bubble {
+[class^="btn-"] {
   position: relative;
-  z-index: 2;
-  color: white;
-  background: none;
-}
-.button--bubble:hover {
-  background: none;
-}
-.button--bubble:hover + .button--bubble__effect-container .circle {
-  background: #44fd82;
-}
-.button--bubble:hover + .button--bubble__effect-container .button {
-  background: #44fd82;
-}
-.button--bubble:active + .button--bubble__effect-container {
-  -webkit-transform: scale(0.95);
-          transform: scale(0.95);
-}
-.button--bubble__container {
-  position: relative;
-  display: inline-block;
-}
-.button--bubble__container .effect-button {
-  position: absolute;
-  width: 50%;
-  height: 25%;
-  top: 50%;
-  left: 25%;
-  z-index: 1;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  background: #222;
-  -webkit-transition: background 0.1s ease-out;
-  transition: background 0.1s ease-out;
-}
-
-.button--bubble__effect-container {
-  position: absolute;
   display: block;
-  width: 200%;
-  height: 400%;
-  top: -150%;
-  left: -50%;
-  -webkit-filter: url("#goo");
-  filter: url("#goo");
-  -webkit-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
-  pointer-events: none;
-}
-.button--bubble__effect-container .circle {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  border-radius: 15px;
-  background: #222;
-  -webkit-transition: background 0.1s ease-out;
-  transition: background 0.1s ease-out;
-}
-.button--bubble__effect-container .circle.top-left {
-  top: 40%;
-  left: 27%;
-}
-.button--bubble__effect-container .circle.bottom-right {
-  bottom: 40%;
-  right: 27%;
-}
-
-.goo {
-  position: absolute;
-  visibility: hidden;
-  width: 1px;
-  height: 1px;
-}
-
-html, body {
+  overflow: hidden;
   width: 100%;
-  height: 100%;
-  text-align: center;
+  height: 80px;
+  max-width: 250px;
+  margin: 1rem auto;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
 }
-
-.button--bubble__container {
-  top: 50%;
-  margin-top: -25px;
+          transform: translate(-50%, -50%);
 }
-
-@-webkit-keyframes hue-rotate {
-  from {
-    -webkit-filter: hue-rotate(0);
-    -moz-filter: hue-rotate(0);
-    -ms-filter: hue-rotate(0);
-    filter: hue-rotate(0);
+.btn-11:after {
+  right: -20px;
+  -webkit-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
+}
+.btn-11:hover {
+  color: #c0d5ca;
+}
+.btn-11:hover:before {
+  -webkit-animation: criss-cross-left 0.8s both;
+          animation: criss-cross-left 0.8s both;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+}
+.btn-11:hover:after {
+  -webkit-animation: criss-cross-right 0.8s both;
+          animation: criss-cross-right 0.8s both;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+}
+@keyframes criss-cross-left {
+  0% {
+    left: -20px;
   }
-  to {
-    -webkit-filter: hue-rotate(360deg);
-    -moz-filter: hue-rotate(360deg);
-    -ms-filter: hue-rotate(360deg);
-    filter: hue-rotate(360deg);
+  50% {
+    left: 50%;
+    width: 20px;
+    height: 20px;
+  }
+  100% {
+    left: 50%;
+    width: 375px;
+    height: 375px;
   }
 }
-
-@keyframes hue-rotate {
-  from {
-    -webkit-filter: hue-rotate(0);
-    -moz-filter: hue-rotate(0);
-    -ms-filter: hue-rotate(0);
-    filter: hue-rotate(0);
+@keyframes criss-cross-right {
+  0% {
+    right: -20px;
   }
-  to {
-    -webkit-filter: hue-rotate(360deg);
-    -moz-filter: hue-rotate(360deg);
-    -ms-filter: hue-rotate(360deg);
-    filter: hue-rotate(360deg);
+  50% {
+    right: 50%;
+    width: 20px;
+    height: 20px;
+  }
+  100% {
+    right: 50%;
+    width: 375px;
+    height: 375px;
   }
 }
