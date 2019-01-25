@@ -11,12 +11,16 @@
     <script>
         var roomCode = urldata("code");
         var userControl = xhr.json("https://api.myjson.com/bins/"+roomCode);
-        if(userControl.join === 0) {
-            location.href = "/?msg=Sorry! The room is full.";
+        if(mine!=1) {
+            if(userControl.join === 0) {
+                location.href = "/?msg=Sorry! The room is full.";
+            } else {
+                userControl.join = 0;
+                var userControl = JSON.parse(xhr.put("https://api.myjson.com/bins/"+roomCode, JSON.stringify(userControl)));
+                joinRoom();
+            }
         } else {
-            userControl.join = 0;
-            var userControl = JSON.parse(xhr.put("https://api.myjson.com/bins/"+roomCode, JSON.stringify(userControl)));
-            joinRoom();
+            elm.id("Status").innerHTML = "Share Room Code: " + roomCode;
         }
         function joinRoom() {
             elm.id("Status").innerHTML = "Joining Room...";
