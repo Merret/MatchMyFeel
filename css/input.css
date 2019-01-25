@@ -71,3 +71,4 @@ body {
 .inp input:focus + span + .border {
   transform: scaleX(1);
 }
+@import url('https://fonts.googleapis.com/css?family=B612+Mono');
