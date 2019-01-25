@@ -13,7 +13,7 @@
         <span class="border"></span>
     </label>
     <script>
-        elm.id("inp").addEventListener("keypress", enterRoom, false);
+        elm.id("inp").addEventListener("keyup", enterRoom, false);
         function enterRoom(e) {
             elm.id("inp").value = elm.id("inp").value.toLowerCase();
             if(e.keyCode==13&&elm.id("inp").value!="") {
