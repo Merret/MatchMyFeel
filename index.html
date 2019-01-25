@@ -4,7 +4,9 @@
     <title>Match My Feel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/combine/gh/Merret/UsefulJS@0.5.3/js/align.min.js,gh/Merret/UsefulJS@0.5.3/js/element.min.js,gh/Merret/UsefulJS@0.5.3/js/urldata.min.js,gh/Merret/UsefulJS@0.5.4/js/userInfo.min.js,gh/Merret/UsefulJS@0.5.3/js/xhr.min.js"></script>
+    <script src="js/button.js"></script>
     <link rel="stylesheet" type="text/css" href="css/input.css">
+    <link rel="stylesheet" type="text/css" href="css/button.css">
 </head>
 <body>
     <label for="inp" class="inp">
@@ -12,6 +14,19 @@
         <span class="label">Room Code</span>
         <span class="border"></span>
     </label>
+    <p>or</p>
+    <span class="button--bubble__container">
+        <a href="javascript:createRoom();" class="button button--bubble">Create Room</a>
+        <span class="button--bubble__effect-container">
+            <span class="circle top-left"></span>
+            <span class="circle top-left"></span>
+            <span class="circle top-left"></span>
+            <span class="button effect-button"></span>
+            <span class="circle bottom-right"></span>
+            <span class="circle bottom-right"></span>
+            <span class="circle bottom-right"></span>
+        </span>
+    </span>
     <script>
         elm.id("inp").addEventListener("keyup", formatCase, false);
         elm.id("inp").addEventListener("keypress", enterRoom, false);
@@ -22,6 +37,15 @@
         }
         function formatCase(e) {
             elm.id("inp").value = elm.id("inp").value.toLowerCase();
+        }
+        function createRoom() {
+            var uI = {
+                "ip": userInfo.ip,
+                "device": userInfo.device.device.vendor + " " + userInfo.device.device.model
+            };
+            var users = [uI];
+            var roomCode = JSON.parse(xhr.post("https://api.myjson.com/bins", JSON.stringify(users))).uri.substr(28);
+            location.href = "room?code=" + roomCode + "&mine=1";
         }
     </script>
 </body>
