@@ -4,7 +4,6 @@
     <title>Match My Feel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/combine/gh/Merret/UsefulJS@0.5.3/js/align.min.js,gh/Merret/UsefulJS@0.5.3/js/element.min.js,gh/Merret/UsefulJS@0.5.3/js/urldata.min.js,gh/Merret/UsefulJS@0.5.4/js/userInfo.min.js,gh/Merret/UsefulJS@0.5.3/js/xhr.min.js"></script>
-    <script src="js/button.js"></script>
     <link rel="stylesheet" type="text/css" href="css/input.css">
     <link rel="stylesheet" type="text/css" href="css/button.css">
 </head>
@@ -15,18 +14,9 @@
         <span class="border"></span>
     </label>
     <p>or</p>
-    <span class="button--bubble__container">
-        <a href="javascript:createRoom();" class="button button--bubble">Create Room</a>
-        <span class="button--bubble__effect-container">
-            <span class="circle top-left"></span>
-            <span class="circle top-left"></span>
-            <span class="circle top-left"></span>
-            <span class="button effect-button"></span>
-            <span class="circle bottom-right"></span>
-            <span class="circle bottom-right"></span>
-            <span class="circle bottom-right"></span>
-        </span>
-    </span>
+    <div class="wrap">
+        <a class="btn-11" href="javascript:createRoom();">Create Room</a>
+    </div>
     <script>
         elm.id("inp").addEventListener("keyup", formatCase, false);
         elm.id("inp").addEventListener("keypress", enterRoom, false);
