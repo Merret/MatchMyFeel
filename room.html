@@ -37,7 +37,7 @@
             };
             this.userControl.users.push(uI);
             this.userControl = JSON.parse(xhr.put("https://api.myjson.com/bins/"+roomCode, JSON.stringify(userControl)));
-            if(this.userControl.users[1] == uI) {
+            if(JSON.stringify(this.userControl.users[1]) == JSON.stringify(uI)) {
                 elm.id("Status").innerHTML = "Joined Room!";
                 prepareQuestions();
             }
