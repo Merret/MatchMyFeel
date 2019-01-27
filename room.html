@@ -20,6 +20,7 @@
             }
         } else {
             elm.id("Status").innerHTML = "Share Room Code: " + roomCode;
+            var WaitInterval = setInterval(function() {waitAnother();}, 1000);
         }
         function waitUserInfo(hs) {
             if(userInfo.ip && userInfo.device) {
@@ -39,6 +40,14 @@
             this.userControl = JSON.parse(xhr.put("https://api.myjson.com/bins/"+roomCode, JSON.stringify(userControl)));
             if(JSON.stringify(this.userControl.users[1]) == JSON.stringify(uI)) {
                 elm.id("Status").innerHTML = "Joined Room!";
+                prepareQuestions();
+            }
+        }
+        function waitAnother() {
+            var x = xhr.json("https://api.myjson.com/bins/"+roomCode);
+            if(x.users.length>1) {
+                clearInterval(WaitInterval);
+                elm.id("Status").innerHTML = "User Joined! Using " + x.users[1].device + " at " + x.users[1].ip;
                 prepareQuestions();
             }
         }
