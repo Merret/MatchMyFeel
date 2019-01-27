@@ -14,7 +14,7 @@
         var userControl = xhr.json("https://api.myjson.com/bins/"+roomCode);
         if(urldata("mine")!=1) {
             if(userControl.users.length > 2) {
-                location.href = "/?msg=Sorry! The room is full.";
+                location.href = "./?msg=Sorry! The room is full.";
             } else {
                 waitUserInfo(1);
             }
