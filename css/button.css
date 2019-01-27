@@ -3,13 +3,7 @@ a {
   line-height: 80px;
   color: black;
 }
-@media (min-width: 600px) {
-  .wrap {
-    width: 50%;
-    float: left;
-  }
-}
-[class^="btn-"] {
+.btn-11 {
   position: relative;
   display: block;
   overflow: hidden;
