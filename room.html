@@ -35,9 +35,9 @@
                 "ip": userInfo.ip,
                 "device": userInfo.device.device.vendor + " " + userInfo.device.device.model
             };
-            userControl.users.push(uI);
-            var userControl = JSON.parse(xhr.put("https://api.myjson.com/bins/"+roomCode, JSON.stringify(userControl)));
-            if(userControl.users[1] == uI) {
+            this.userControl.users.push(uI);
+            this.userControl = JSON.parse(xhr.put("https://api.myjson.com/bins/"+roomCode, JSON.stringify(userControl)));
+            if(this.userControl.users[1] == uI) {
                 elm.id("Status").innerHTML = "Joined Room!";
                 prepareQuestions();
             }
