@@ -12,17 +12,24 @@
         var roomCode = urldata("code");
         var userControl = xhr.json("https://api.myjson.com/bins/"+roomCode);
         if(urldata("mine")!=1) {
-            if(userControl.join === 0) {
+            if(userControl.users.length > 2) {
                 location.href = "/?msg=Sorry! The room is full.";
             } else {
-                userControl.join = 0;
-                var userControl = JSON.parse(xhr.put("https://api.myjson.com/bins/"+roomCode, JSON.stringify(userControl)));
-                joinRoom();
+                waitUserInfo(1);
             }
         } else {
             elm.id("Status").innerHTML = "Share Room Code: " + roomCode;
         }
+        function waitUserInfo(hs) {
+            if(userInfo.ip && userInfo.device) {
+                joinRoom();
+            } else {
+                console.log("Waited For " + 0.5*hs + "s.");
+                setTimeout(function() {waitUserInfo(hs+1);}, 500);
+            }
+        }
         function joinRoom() {
+            var userControl = JSON.parse(xhr.put("https://api.myjson.com/bins/"+roomCode, JSON.stringify(userControl)));
             elm.id("Status").innerHTML = "Joining Room...";
             var uI = {
                 "ip": userInfo.ip,
@@ -30,13 +37,13 @@
             };
             userControl.users.push(uI);
             var userControl = JSON.parse(xhr.put("https://api.myjson.com/bins/"+roomCode, JSON.stringify(userControl)));
-            if(userControl.users.length == 2) {
+            if(userControl.users[1] == uI) {
                 elm.id("Status").innerHTML = "Joined Room!";
                 prepareQuestions();
             }
         }
         function prepareQuestions() {
-            
+            console.log("Start Prepare Questions.");
         }
     </script>
 </body>
