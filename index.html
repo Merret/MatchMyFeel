@@ -36,8 +36,7 @@
                 "ip": userInfo.ip,
                 "device": userInfo.device.device.vendor + " " + userInfo.device.device.model
             };
-            var users = [uI];
-            var roomCode = JSON.parse(xhr.post("https://api.myjson.com/bins", JSON.stringify(users))).uri.substr(28);
+            var roomCode = JSON.parse(xhr.post("https://api.myjson.com/bins", JSON.stringify({"users": [uI]}))).uri.substr(28);
             location.href = "room?code=" + roomCode + "&mine=1";
         }
     </script>
