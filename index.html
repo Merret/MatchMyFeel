@@ -19,7 +19,7 @@
     </div>
     <script>
         if(urldata("msg")!=-1) {
-            alert(urldata("msg"));
+            alert(decodeURI(urldata("msg")));
         }
         elm.id("inp").addEventListener("keyup", formatCase, false);
         elm.id("inp").addEventListener("keypress", enterRoom, false);
