@@ -30,7 +30,6 @@
             }
         }
         function joinRoom() {
-            var userControl = JSON.parse(xhr.put("https://api.myjson.com/bins/"+roomCode, JSON.stringify(userControl)));
             elm.id("Status").innerHTML = "Joining Room...";
             var uI = {
                 "ip": userInfo.ip,
