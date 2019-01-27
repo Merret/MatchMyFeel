@@ -11,7 +11,7 @@
     <script>
         var roomCode = urldata("code");
         var userControl = xhr.json("https://api.myjson.com/bins/"+roomCode);
-        if(mine!=1) {
+        if(urldata("mine")!=1) {
             if(userControl.join === 0) {
                 location.href = "/?msg=Sorry! The room is full.";
             } else {
