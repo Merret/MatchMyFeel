@@ -57,6 +57,13 @@
         }
         function prepareQuestions() {
             console.log("Start Prepare Questions.");
+            elm.id("Status").innerHTML = "Preparing Questions.";
+            var questionsLists = xhr.json("json/questionsLists.json");
+            var QL = questionsLists[(Math.floor(Math.random()*100))%questionsLists.length];
+            elm.id("Status").innerHTML = "Loading Questions.";
+            var qs = xhr.json(QL);
+            elm.id("Status").innerHTML = "Waiting...";
+            
         }
     </script>
 </body>
