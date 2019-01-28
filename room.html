@@ -37,10 +37,14 @@
                 "device": userInfo.device.device.vendor + " " + userInfo.device.device.model
             };
             this.userControl.users.push(uI);
-            this.userControl = JSON.parse(xhr.put("https://api.myjson.com/bins/"+roomCode, JSON.stringify(userControl)));
-            if(JSON.stringify(this.userControl.users[1]) == JSON.stringify(uI)) {
-                elm.id("Status").innerHTML = "Joined Room!";
-                prepareQuestions();
+            if((xhr.json("https://api.myjson.com/bins/"+roomCode)).users.length = 1) {
+                this.userControl = JSON.parse(xhr.put("https://api.myjson.com/bins/"+roomCode, JSON.stringify(userControl)));
+                if(JSON.stringify(this.userControl.users[1]) == JSON.stringify(uI)) {
+                    elm.id("Status").innerHTML = "Joined Room!";
+                    prepareQuestions();
+                }
+            } else {
+                location.href = "./?msg=Sorry! Someone has joined the room before you.";
             }
         }
         function waitAnother() {
