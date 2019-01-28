@@ -66,19 +66,25 @@
             elm.id("Status").innerHTML = "Loading Questions.";
             this.Qs = xhr.json(QL);
             elm.id("Status").innerHTML = "Waiting...";
+            document.body.innerHTML += xhr.get("pack/original/ans.html");
+            elm.id("question").innerHTML = this.Qs[0][0];
+            for(var i = 1; i < 5; i++) {
+                elm.id("ans-"+i).innerHTML = this.Qs[0][i];
+                elm.id("ans-"+i).onclick = function() {ansMe(1, i);};
+            }
             var userAns = JSON.parse(xhr.post("https://api.myjson.com/bins", "[]")).uri.substr(28);
             this.rA = "https://api.myjson.com/bins/" + userAns;
         }
         function ansMe(qn, ch) {
             var trA = xhr.json(this.rA);
             if(trA[qn][this.w==1 ? 0 : 1]) {
-                showAnotherAns();
+                showAnotherAns(trA[qn][this.w==1 ? 0 : 1]);
             }
             trA[qn][this.w] = ch;
             this.lA = JSON.parse(xhr.put(this.rA));
         }
-        function showAnotherAns() {
-            
+        function showAnotherAns(ch) {
+            elm.id("ans"+ch).style.backgroundColor = "#b3ffb3";
         }
     </script>
 </body>
