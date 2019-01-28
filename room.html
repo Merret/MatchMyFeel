@@ -10,15 +10,18 @@
 <body>
     <h1 id="Status">Checking Room Status...</h1>
     <script>
+        var w, lA=[], Qs, rA;
         var roomCode = urldata("code");
         var userControl = xhr.json("https://api.myjson.com/bins/"+roomCode);
         if(urldata("mine")!=1) {
             if(userControl.users.length > 2) {
                 location.href = "./?msg=Sorry! The room is full.";
             } else {
+                w = 1;
                 waitUserInfo(1);
             }
         } else {
+            w = 0;
             elm.id("Status").innerHTML = "Share Room Code: " + roomCode;
             var WaitInterval = setInterval(function() {waitAnother();}, 1000);
         }
@@ -61,8 +64,20 @@
             var questionsLists = xhr.json("json/questionsLists.json");
             var QL = questionsLists[(Math.floor(Math.random()*100))%questionsLists.length];
             elm.id("Status").innerHTML = "Loading Questions.";
-            var qs = xhr.json(QL);
+            this.Qs = xhr.json(QL);
             elm.id("Status").innerHTML = "Waiting...";
+            var userAns = JSON.parse(xhr.post("https://api.myjson.com/bins", "[]")).uri.substr(28);
+            this.rA = "https://api.myjson.com/bins/" + userAns;
+        }
+        function ansMe(qn, ch) {
+            var trA = xhr.json(this.rA);
+            if(trA[qn][this.w==1 ? 0 : 1]) {
+                showAnotherAns();
+            }
+            trA[qn][this.w] = ch;
+            this.lA = JSON.parse(xhr.put(this.rA));
+        }
+        function showAnotherAns() {
             
         }
     </script>
