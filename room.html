@@ -69,9 +69,10 @@
             document.body.innerHTML += xhr.get("pack/original/ans.html");
             elm.id("question").innerHTML = this.Qs[0][0];
             for(var i = 1; i < 5; i++) {
-                elm.id("ans-"+i).innerHTML = this.Qs[0][i];
+                elm.id("ans-"+i).getElementsByTagName("span")[0].innerHTML = this.Qs[0][i];
                 elm.id("ans-"+i).onclick = function() {ansMe(1, i);};
             }
+            elm.id("Status").innerHTML = "";
             var userAns = JSON.parse(xhr.post("https://api.myjson.com/bins", "[]")).uri.substr(28);
             this.rA = "https://api.myjson.com/bins/" + userAns;
             console.log(this.rA);
