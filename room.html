@@ -73,7 +73,11 @@
                 elm.id("ans-"+i).onclick = function() {ansMe(1, i);};
             }
             elm.id("Status").innerHTML = "";
-            var userAns = JSON.parse(xhr.post("https://api.myjson.com/bins", "[]")).uri.substr(28);
+            var data1 = [];
+            for(var i = 0; i < this.Qs.length; i++) {
+                data1.push([0,0]);
+            }
+            var userAns = JSON.parse(xhr.post("https://api.myjson.com/bins", JSON.stringify(data1))).uri.substr(28);
             this.rA = "https://api.myjson.com/bins/" + userAns;
             console.log(this.rA);
         }
