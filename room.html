@@ -74,6 +74,7 @@
             }
             var userAns = JSON.parse(xhr.post("https://api.myjson.com/bins", "[]")).uri.substr(28);
             this.rA = "https://api.myjson.com/bins/" + userAns;
+            console.log(this.rA);
         }
         function ansMe(qn, ch) {
             var trA = xhr.json(this.rA);
