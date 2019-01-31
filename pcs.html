@@ -5,5 +5,6 @@
         localStorage["MMF-PAS"] = '{"userName": '+decodeURI(urldata("UN"))+'}';
     }
     alert(decodeURI(urldata("msg")));
-    var code = xhr.get("https://co-co.tk/api/token.php?a=");
+    var code = xhr.get("https://co-co.tk/api/token.php?a=RdMWoMWH0dXWWDnuPTBP5IaiXpncSjy2V21kGYlaSOZYenZFNe83QvLlOmZP7INESAUWtINLUvjpJWLYZ6Y7Ea5eg5BFhZf1gvKOxdXlAhcDzslxu21SPq2tORe0hrxkFsQmb3hC6mYJSwNInnseQSvt6UmF9bA5YnqwT8jpUQWI8ttLTmpubn8xOS4rzUAFYy15sXavuXsj1Ih9FWiYN1gZmfHuHkvRWzuSeaJISyhp0USeLx8plY1s2A6urOAO");
+    var data = xhr.json("https://api.myjson.com/bins/"+code);
 </script>
