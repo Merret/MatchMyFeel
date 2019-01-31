@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Match My Feel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/combine/gh/Merret/UsefulJS@0.5.3/js/align.min.js,gh/Merret/UsefulJS@0.5.3/js/element.min.js,gh/Merret/UsefulJS@0.5.3/js/urldata.min.js,gh/Merret/UsefulJS@0.5.4/js/userInfo.min.js,gh/Merret/UsefulJS@0.5.3/js/xhr.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/input.css">
+    <link rel="stylesheet" type="text/css" href="css/button.css">
+</head>
+<body>
+    <label for="inp" class="inp">
+        <input type="text" id="inp" placeholder="&nbsp;" maxlength="8">
+        <span class="label">Room Code</span>
+        <span class="border"></span>
+    </label>
+    <p>or</p>
+    <div class="wrap">
+        <a class="btn-11" href="javascript:createRoom();">Create Room</a>
+    </div>
+    <script>
+        if(urldata("msg")!=-1) {
+            alert(decodeURI(urldata("msg")));
+        }
+        elm.id("inp").addEventListener("keyup", formatCase, false);
+        elm.id("inp").addEventListener("keypress", enterRoom, false);
+        function enterRoom(e) {
+            if(e.keyCode==13&&elm.id("inp").value!="") {
+                location.href = "room?code=" + elm.id("inp").value;
+            }
+        }
+        function formatCase(e) {
+            elm.id("inp").value = elm.id("inp").value.toLowerCase();
+        }
+        function createRoom() {
+            var uI = {
+                "ip": userInfo.ip,
+                "device": userInfo.device.device.vendor + " " + userInfo.device.device.model
+            };
+            var roomCode = JSON.parse(xhr.post("https://api.myjson.com/bins", JSON.stringify({"users": [uI]}))).uri.substr(28);
+            location.href = "room?code=" + roomCode + "&mine=1";
+        }
+    </script>
+</body>
+</html>
