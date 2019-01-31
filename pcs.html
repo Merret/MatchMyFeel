@@ -1,3 +1,7 @@
+<script src="https://cdn.jsdelivr.net/gh/Merret/UsefulJS@0.5.3/js/urldata.min.js"></script>
 <script>
-    
+    if(urldata("result")=="1") {
+        localStorage["MMF-PAS"] = '{"userName": '+decodeURI(urldata("UN"))+'}';
+    }
+    alert(decodeURI(urldata("msg")));
 </script>
