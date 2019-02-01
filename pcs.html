@@ -1,11 +1,12 @@
 <script src="https://cdn.jsdelivr.net/gh/Merret/UsefulJS@0.5.4/js/urldata.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/Merret/UsefulJS@0.5.4/js/xhr.min.js"></script>
 <script>
+    var k = "RdMWoMWH0dXWWDnuPTBP5IaiXpncSjy2V21kGYlaSOZYenZFNe83QvLlOmZP7INESAUWtINLUvjpJWLYZ6Y7Ea5eg5BFhZf1gvKOxdXlAhcDzslxu21SPq2tORe0hrxkFsQmb3hC6mYJSwNInnseQSvt6UmF9bA5YnqwT8jpUQWI8ttLTmpubn8xOS4rzUAFYy15sXavuXsj1Ih9FWiYN1gZmfHuHkvRWzuSeaJISyhp0USeLx8plY1s2A6urOAO";
     if(urldata("result")=="1") {
         localStorage["MMF-PAS"] = '{"userName": '+decodeURI(urldata("UN"))+'}';
     }
     alert(decodeURI(urldata("msg")));
-    var code = xhr.get("https://co-co.tk/api/token.php?a=RdMWoMWH0dXWWDnuPTBP5IaiXpncSjy2V21kGYlaSOZYenZFNe83QvLlOmZP7INESAUWtINLUvjpJWLYZ6Y7Ea5eg5BFhZf1gvKOxdXlAhcDzslxu21SPq2tORe0hrxkFsQmb3hC6mYJSwNInnseQSvt6UmF9bA5YnqwT8jpUQWI8ttLTmpubn8xOS4rzUAFYy15sXavuXsj1Ih9FWiYN1gZmfHuHkvRWzuSeaJISyhp0USeLx8plY1s2A6urOAO&sessid="+urldata("sessid"));
+    var code = xhr.get("https://co-co.tk/api/token.php?a="+k+"&sessid="+urldata("sessid"));
     if(!code) {
         createData();
     }
@@ -13,7 +14,7 @@
     localStorage["MMF-INFO"] = xhr.get("https://api.myjson.com/bins/"+code);
     function createData() {
         var n = JSON.parse(xhr.post("https://api.myjson.com/bins", "[{}]")).uri.substr(28);
-        if(xhr.get("https://co-co.tk/api/AppAddData.php?x="+n+"&sessid="+urldata("sessid"))) {
+        if(xhr.get("https://co-co.tk/api/AppAddData.php?a="+k+"&x="+n+"&sessid="+urldata("sessid"))) {
             code = n;
         }
     }
